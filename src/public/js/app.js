@@ -1,7 +1,6 @@
 const messageList = document.querySelector("ul");
 const nickForm = document.querySelector("#nick");
 const messageForm = document.querySelector("#message");
-
 const socket = new WebSocket(`ws://${window.location.host}`);
 
 function makeMessage(type, payload) {
@@ -15,7 +14,7 @@ function handleOpen() {
 
 socket.addEventListener("open", handleOpen);
 
-socket.addEventListener("message", (message) => {
+socket.addEventListener("message", message => {
   const li = document.createElement("li");
   li.innerText = message.data;
   messageList.append(li);
@@ -40,4 +39,4 @@ function handleNickSubmit(event) {
 }
 
 messageForm.addEventListener("submit", handleSubmit);
-nickForm.addEventListener("submit".handleNickSubmit);
+nickForm.addEventListener("submit", handleNickSubmit);
