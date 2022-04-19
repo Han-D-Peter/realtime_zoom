@@ -13,11 +13,11 @@ app.get("/*", (_, res) => res.redirect("/"));
 const httpServer = http.createServer(app);
 const wsServer = new Server(httpServer);
 
-wsServer.on("connection", (socket) => {
-  socket.on("enter_room", (msg, done) => {
-    console.log(msg);
+wsServer.on("connection", socket => {
+  socket.on("enter_room", (roonName, done) => {
+    console.log(roonName);
     setTimeout(() => {
-      done();
+      done("Hello! from the backend");
     }, 1000);
   });
 });
