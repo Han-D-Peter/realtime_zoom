@@ -21,7 +21,6 @@ wsServer.on("connection", (socket) => {
     }, 1000);
   });
 });
-
 /* function onSocketClose() {
   console.log("Disconnected from the Browser ❌");
 }
