@@ -14,11 +14,13 @@ const httpServer = http.createServer(app);
 const wsServer = new Server(httpServer);
 
 wsServer.on("connection", socket => {
+  socket.onAny(event => {
+    console.log(`Socket Event: ${event}`);
+  });
   socket.on("enter_room", (roonName, done) => {
-    console.log(roonName);
-    setTimeout(() => {
-      done("Hello! from the backend");
-    }, 1000);
+    socket.join(roonName);
+    done();
+    socket.to(roomName).emit("welcome");
   });
 });
 /* function onSocketClose() {
